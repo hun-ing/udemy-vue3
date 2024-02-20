@@ -7,6 +7,7 @@
       <li><strong>휴대폰:</strong> {{ phoneNumber }}</li>
       <li><strong>이메일:</strong> {{ emailAddress }}</li>
     </ul>
+    <button @click="deleteFriend">삭제</button>
   </li>
 </template>
 
@@ -43,7 +44,7 @@ const props = defineProps({
   },
 });
 // const friendIsFavorite = ref(props.isFavorite);
-const emits = defineEmits(['toggle-favorite']);
+const emits = defineEmits(['toggle-favorite', 'delete-friend']);
 // const emits = defineEmits({
 //   // No validation
 //   click: null,
@@ -61,6 +62,7 @@ const emits = defineEmits(['toggle-favorite']);
 
 const toggleFavorite = () => emits('toggle-favorite', props.id);
 const toggleDetails = () => detailsAreVisible.value = !detailsAreVisible.value;
+const deleteFriend = () => emits('delete-friend', props.id);
 </script>
 
 <style scoped>
