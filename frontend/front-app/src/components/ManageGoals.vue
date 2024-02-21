@@ -13,7 +13,7 @@
 
 <script setup>
 import {ref} from "vue";
-import ErrorAlert from "@/components/ErrorAlert.vue";
+import ErrorAlert from "@/components/common/ErrorAlert.vue";
 
 const goal = ref();
 const inputIsInvalid = ref(false);
