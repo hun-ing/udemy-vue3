@@ -1,31 +1,32 @@
 <template>
   <div>
-    <TheHeader></TheHeader>
-    <BadgeList></BadgeList>
-    <UserInfo
-        :full-name="activeUser.name"
-        :info-text="activeUser.description"
-        :role="activeUser.role"
-    ></UserInfo>
-    <CourseGoals #default="slotProps">
-        <h2>{{slotProps.item}}</h2>
-        <p>{{slotProps.anotherProp}}</p>
-    </CourseGoals>
+    <TheHeader/>
+    <button @click="setSelectedComponent(ActiveGoals)">Active Goals</button>
+    <button @click="setSelectedComponent(ManageGoals)">Manage Goals</button>
+<!--    <ActiveGoals v-if="selectedComponent === 'active-goals'"></ActiveGoals>
+    <ManageGoals v-if="selectedComponent === 'manage-goals'"></ManageGoals>-->
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
   </div>
 </template>
 
 <script setup>
 import TheHeader from "@/components/TheHeader.vue";
-import BadgeList from "@/components/BadgeList.vue";
-import UserInfo from "@/components/UserInfo.vue";
 import {ref} from "vue";
-import CourseGoals from "@/components/CourseGoals.vue";
+import ActiveGoals from "@/components/ActiveGoals.vue";
+import ManageGoals from "@/components/ManageGoals.vue";
 
 const activeUser = ref({
   name: 'Maximilian Schwarzmüller',
   description: 'Site owner and admin',
   role: 'admin',
 });
+
+const selectedComponent = ref(ActiveGoals);
+const setSelectedComponent = (cmp) => {
+  selectedComponent.value = cmp;
+}
 </script>
 
 <style>
