@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import BaseCard from "@/components/BaseCard.vue";
+import BaseCard from "@/components/UI/BaseCard.vue";
 
 const app = createApp(App)
 

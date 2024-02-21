@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import BaseBadge from "@/components/BaseBadge.vue";
+import BaseBadge from "@/components/UI/BaseBadge.vue";
 
 defineProps(['fullName', 'infoText', 'role'])
 </script>
