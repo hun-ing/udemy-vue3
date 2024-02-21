@@ -6,11 +6,11 @@
 
 import {computed} from "vue";
 
-defineProps(['type', 'caption']);
+const props = defineProps(['type', 'caption']);
 const classes = computed(() => {
   return {
-    'badge--admin': this.type === 'admin',
-    'badge--author': this.type === 'author',
+    'badge--admin': props.type === 'admin',
+    'badge--author': props.type === 'author',
   }
 })
 </script>
