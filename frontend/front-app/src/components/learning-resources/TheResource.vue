@@ -3,7 +3,9 @@
     <BaseButton @click="setSelectedTab(StoredResources)" :mode="storedResButtonMode">Stored Resources</BaseButton>
     <BaseButton @click="setSelectedTab(AddResource)" :mode="addResButtonMode">Add Resource</BaseButton>
   </BaseCard>
-  <component :is="selectedTab"></component>
+  <keep-alive>
+    <component :is="selectedTab"></component>
+  </keep-alive>
 </template>
 
 <script setup>
@@ -22,9 +24,18 @@ provide('resources', resources);
 const setSelectedTab = (tab) => {
   selectedTab.value = tab;
 }
+const addResource = (title, description, link) => {
+  const newResource = {
+    id: new Date().toISOString(),
+    title,
+    description,
+    link
+  }
 
-console.log('selectedTab.value = ', selectedTab.value);
-console.log('StoredResources = ', StoredResources);
+  resources.value.unshift(newResource);
+  selectedTab.value = StoredResources;
+}
+provide('addResource', addResource);
 
 const storedResButtonMode = computed(() => selectedTab.value.__name === StoredResources.__name ? null : 'flat');
 const addResButtonMode = computed(() => selectedTab.value.__name === AddResource.__name ? null : 'flat');
