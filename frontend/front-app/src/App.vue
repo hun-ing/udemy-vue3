@@ -1,17 +1,11 @@
 <template>
   <TheHeader title="RememberMe"/>
-  <StoredResources :resources/>
+  <TheResource />
 </template>
 
 <script setup>
-import {ref} from "vue";
-import StoredResources from "@/components/learning-resources/StoredResources.vue";
 import TheHeader from "@/components/layouts/TheHeader.vue";
-
-const resources = ref([
-  {id: 'test1', title: 'Test1', description: 'test111', link: 'https://vuejs.org'},
-  {id: 'test2', title: 'Test2', description: 'test222', link: 'https://google.org'},
-]);
+import TheResource from "@/components/learning-resources/TheResource.vue";
 </script>
 
 <style>
