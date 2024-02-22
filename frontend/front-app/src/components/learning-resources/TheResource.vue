@@ -39,6 +39,8 @@ provide('addResource', addResource);
 
 const storedResButtonMode = computed(() => selectedTab.value.__name === StoredResources.__name ? null : 'flat');
 const addResButtonMode = computed(() => selectedTab.value.__name === AddResource.__name ? null : 'flat');
+const removeResource = (resId) => resources.value = resources.value.filter(resource => resource.id !== resId);
+provide('removeResource', removeResource);
 </script>
 
 <style scoped>
