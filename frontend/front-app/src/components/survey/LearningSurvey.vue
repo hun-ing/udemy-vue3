@@ -39,22 +39,37 @@
 
 <script setup>
 import {ref} from "vue";
+import { useFetch } from '@vueuse/core'
 
 const enteredName = ref('');
 const chosenRating = ref(null);
 const invalidInput = ref(false);
-const emits = defineEmits(['survey-submit']);
+// const emits = defineEmits(['survey-submit']);
+
 const submitSurvey = () => {
+
   if (enteredName.value === '' || !chosenRating.value) {
     invalidInput.value = true;
     return;
   }
+
   invalidInput.value = false;
 
-  emits('survey-submit', {
-    userName: enteredName.value,
-    rating: chosenRating.value,
-  });
+  // emits('survey-submit', {
+  //   userName: enteredName.value,
+  //   rating: chosenRating.value,
+  // });
+
+  useFetch('http://localhost:8080/api/survey', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: enteredName.value,
+      rating: chosenRating.value,
+    })
+  })
 
   enteredName.value = '';
   chosenRating.value = null;
