@@ -17,7 +17,7 @@ public class SurveyController {
 
   private final SurveyRepository surveyRepository;
 
-  @PostMapping("/api/servey")
+  @PostMapping("/api/survey")
   public ResponseEntity createPost(@RequestBody SurveyDTO requestBody) {
     SurveyEntity postEntity = surveyRepository.save(SurveyDomain.of(requestBody).toCreateEntity());
     return ResponseEntity.status(HttpStatus.OK).body(postEntity);
