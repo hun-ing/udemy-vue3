@@ -13,7 +13,7 @@
 import { inject } from 'vue'
 import TeamsItem from '@/components/teams/TeamsItem.vue'
 
-inject('teams')
+const teams = inject('teams')
 </script>
 
 <style scoped>

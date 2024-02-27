@@ -1,14 +1,12 @@
 <template>
   <theNavigation @set-page="setActivePage"></theNavigation>
   <main>
-    <component :is="activePage"></component>
+    <router-view></router-view>
   </main>
 </template>
 
 <script setup>
 import { ref, provide } from 'vue'
-import TeamsList from '@/components/teams/TeamsList.vue'
-import UsersList from '@/components/users/UsersList.vue'
 import TheNavigation from '@/components/nav/TheNavigation.vue'
 
 const activePage = ref('teams-list')

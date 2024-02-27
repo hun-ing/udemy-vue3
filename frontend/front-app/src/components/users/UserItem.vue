@@ -6,16 +6,15 @@
 </template>
 
 <script setup>
-
 import { computed } from 'vue'
 
-defineProps(['name', 'role'])
+const props = defineProps(['name', 'role'])
 
 const roleClass = computed(() => {
-  if (this.role === 'Engineer') {
+  if (props.role === 'Engineer') {
     return 'role--engineer'
   }
-  if (this.role === 'Consultant') {
+  if (props.role === 'Consultant') {
     return 'role--consultant'
   }
   return null
