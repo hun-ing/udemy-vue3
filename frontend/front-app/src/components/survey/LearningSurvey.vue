@@ -29,6 +29,7 @@
         <p
             v-if="invalidInput"
         >One or more input fields are invalid. Please check your provided data.</p>
+        <p v-if="errorMessage">{{errorMessage}}</p>
         <div>
           <BaseButton>Submit</BaseButton>
         </div>
@@ -44,9 +45,12 @@ import { useFetch } from '@vueuse/core'
 const enteredName = ref('');
 const chosenRating = ref(null);
 const invalidInput = ref(false);
+const errorMessage = ref(null);
 // const emits = defineEmits(['survey-submit']);
 
-const submitSurvey = () => {
+const submitSurvey = async () => {
+
+  errorMessage.value = null;
 
   if (enteredName.value === '' || !chosenRating.value) {
     invalidInput.value = true;
@@ -60,7 +64,7 @@ const submitSurvey = () => {
   //   rating: chosenRating.value,
   // });
 
-  useFetch('http://localhost:8080/api/survey', {
+  const {error} = await useFetch('http://localhost:8080/api/survey', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -69,7 +73,11 @@ const submitSurvey = () => {
       name: enteredName.value,
       rating: chosenRating.value,
     })
-  })
+  });
+
+  if (error.value) {
+    errorMessage.value = 'Something went wrong - try again later!';
+  }
 
   enteredName.value = '';
   chosenRating.value = null;
