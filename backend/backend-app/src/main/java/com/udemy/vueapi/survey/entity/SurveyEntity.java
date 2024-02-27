@@ -1,5 +1,6 @@
 package com.udemy.vueapi.survey.entity;
 
+import com.udemy.vueapi.survey.dto.SurveyDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
