@@ -1,18 +1,21 @@
 <template>
   <BaseContainer title="Vuex">
-    <h3>{{counter}}</h3>
-    <button @click="addOne">Add 1</button>
+    <TheCounter></TheCounter>
+    <FavoriteValue></FavoriteValue>
+    <button @click="addOne">Add 10</button>
+    <ChangeCounter></ChangeCounter>
   </BaseContainer>
 </template>
 
 <script setup>
-import BaseContainer from "@/components/BaseContainer.vue";
-import {useCreateStore} from "@/main.js";
-import {computed} from "vue";
-const createStore = useCreateStore();
+import TheCounter from '@/components/TheCounter.vue'
+import BaseContainer from '@/components/BaseContainer.vue'
+import ChangeCounter from '@/components/ChangeCounter.vue'
+import { useCreateStore } from '@/stores/useCreateStore.js'
+import FavoriteValue from '@/components/FavoriteValue.vue'
 
-const counter = computed(() => createStore.counter);
-const addOne = () => createStore.counter++;
+const createStore = useCreateStore()
+const addOne = () => createStore.increase(10)
 </script>
 
 <style>
