@@ -3,10 +3,10 @@
     <nav>
       <ul>
         <li>
-          <button @click="setActivePage(TeamsList)">Teams</button>
+          <router-link to="/teams">Teams</router-link>
         </li>
         <li>
-          <button @click="setActivePage(UsersList)">Users</button>
+          <router-link to="/users">Users</router-link>
         </li>
       </ul>
     </nav>
@@ -14,11 +14,6 @@
 </template>
 
 <script setup>
-import TeamsList from '@/components/teams/TeamsList.vue'
-import UsersList from '@/components/users/UsersList.vue'
-
-const emits = defineEmits(['set-page'])
-const setActivePage = (page) => emits('set-page', page)
 </script>
 
 <style scoped>
@@ -46,8 +41,8 @@ li {
   margin: 0 2rem;
 }
 
-button {
-  font: inherit;
+a {
+  text-decoration: none;
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
@@ -56,8 +51,9 @@ button {
   display: inline-block;
 }
 
-button:hover,
-button:active {
+a:hover,
+a:active,
+a.active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;

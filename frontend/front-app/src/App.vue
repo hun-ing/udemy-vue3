@@ -1,32 +1,32 @@
 <template>
-  <theNavigation @set-page="setActivePage"></theNavigation>
+  <TheNavigation></TheNavigation>
   <main>
     <router-view></router-view>
   </main>
+  <footer>
+    <router-view name="footer"></router-view>
+  </footer>
 </template>
 
 <script setup>
-import { ref, provide } from 'vue'
+import {ref, provide} from 'vue'
 import TheNavigation from '@/components/nav/TheNavigation.vue'
 
-const activePage = ref('teams-list')
 const teams = ref([
-  { id: 't1', name: 'Frontend Engineers', members: ['u1', 'u2'] },
-  { id: 't2', name: 'Backend Engineers', members: ['u1', 'u2', 'u3'] },
-  { id: 't3', name: 'Client Consulting', members: ['u4', 'u5'] }
+  {id: 't1', name: 'Frontend Engineers', members: ['u1', 'u2']},
+  {id: 't2', name: 'Backend Engineers', members: ['u1', 'u2', 'u3']},
+  {id: 't3', name: 'Client Consulting', members: ['u4', 'u5']}
 ])
 const users = ref([
-  { id: 'u1', fullName: 'Max Schwarz', role: 'Engineer' },
-  { id: 'u2', fullName: 'Praveen Kumar', role: 'Engineer' },
-  { id: 'u3', fullName: 'Julie Jones', role: 'Engineer' },
-  { id: 'u4', fullName: 'Alex Blackfield', role: 'Consultant' },
-  { id: 'u5', fullName: 'Marie Smith', role: 'Consultant' }
+  {id: 'u1', fullName: 'Max Schwarz', role: 'Engineer'},
+  {id: 'u2', fullName: 'Praveen Kumar', role: 'Engineer'},
+  {id: 'u3', fullName: 'Julie Jones', role: 'Engineer'},
+  {id: 'u4', fullName: 'Alex Blackfield', role: 'Consultant'},
+  {id: 'u5', fullName: 'Marie Smith', role: 'Consultant'}
 ])
 
 provide('teams', teams.value)
 provide('users', users.value)
-
-const setActivePage = (page) => activePage.value = page
 </script>
 
 <style>

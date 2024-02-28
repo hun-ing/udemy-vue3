@@ -9,18 +9,45 @@
         :role="member.role"
       ></UserItem>
     </ul>
+    <router-link to="/teams/t2">Go to Team 2</router-link>
   </section>
 </template>
 
 <script setup>
 import UserItem from '@/components/users/UserItem.vue'
-import { ref } from 'vue'
+import {inject, onMounted, ref, watch} from 'vue'
+import {onBeforeRouteUpdate} from "vue-router";
+
+const users = inject('users');
+const teams = inject('teams');
 
 const teamName = ref('Test')
-const members = ref([
-  { id: 'u1', fullName: 'Max Schwarz', role: 'Engineer' },
-  { id: 'u2', fullName: 'Max Schwarz', role: 'Engineer' }
-])
+const members = ref([])
+
+const props = defineProps(['teamId']);
+
+const loadTeamMembers = (teamId) => {
+  members.value = [];
+  const selectedTeam = teams.find(team => team.id === teamId);
+  const selectedMembers = selectedTeam.members;
+
+  for (const member of selectedMembers) {
+    const selectedUser = users.find(user => user.id === member);
+    members.value.push(selectedUser)
+  }
+
+  teamName.value = selectedTeam.name;
+}
+
+onMounted(() => loadTeamMembers(props.teamId));
+watch(props, (newProps) => loadTeamMembers(newProps.teamId));
+
+onBeforeRouteUpdate((to, from, next) => {
+  console.log('onBeforeRouteUpdate...');
+  console.log(to, from)
+  // loadTeamMembers(to.params.teamId);
+  next();
+})
 </script>
 
 <style scoped>

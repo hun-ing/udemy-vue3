@@ -2,12 +2,18 @@
   <li>
     <h3>{{ name }}</h3>
     <div class="team-members">{{ memberCount }} Members</div>
-    <a href="#">View Members</a>
+    <router-link :to="teamMembersLink">View Members</router-link>
   </li>
 </template>
 
 <script setup>
-defineProps(['name', 'memberCount'])
+import {computed} from "vue";
+
+const props = defineProps(['id', 'name', 'memberCount']);
+const teamMembersLink = computed(() => {
+  // return `/teams/${props.id}?sort=asc`;
+  return {name: 'team-members', params: {teamId: props.id}, query: {sort: 'asc'}}
+})
 </script>
 
 <style scoped>
