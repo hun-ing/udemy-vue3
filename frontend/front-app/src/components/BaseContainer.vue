@@ -6,7 +6,11 @@
 </template>
 
 <script setup>
+import {mapStores} from "pinia";
+import {useCounterStore} from "@/stores/counter/index.js";
+
 defineProps(['title'])
+const stores = mapStores(useCounterStore);
 </script>
 
 <style scoped>

@@ -1,12 +1,11 @@
 <template>
-  <button @click="addOne">Add 1</button>
+  <button @click="actions.increment()">Add 1</button>
 </template>
 
 <script setup>
-import { useCreateStore } from '@/stores/useCreateStore.js'
-
-const createStore = useCreateStore()
-const addOne = () => createStore.increment()
+import { useCounterStore } from '@/stores/counter/index.js'
+import {mapActions} from "pinia";
+const actions = mapActions(useCounterStore, ['increase', 'increment']);
 </script>
 
 <style scoped>

@@ -4,10 +4,10 @@
 </template>
 
 <script setup>
-import { useCreateStore } from '@/stores/useCreateStore.js'
+import { useCounterStore } from '@/stores/counter/index.js'
 import {computed} from "vue";
 
-const createStore = useCreateStore();
+const createStore = useCounterStore();
 const counter = computed(() => createStore.normalizedCounter);
 </script>
 
