@@ -1,27 +1,13 @@
 <template>
-  <BaseContainer title="Vuex" v-if="userAuthStore.userIsAuthenticated">
-    <TheCounter></TheCounter>
-    <FavoriteValue></FavoriteValue>
-    <button @click="addOne">Add 10</button>
-    <ChangeCounter></ChangeCounter>
-  </BaseContainer>
-  <BaseContainer title="Auth">
-    <UserAuth></UserAuth>
-  </BaseContainer>
+  <TheHeader></TheHeader>
+  <router-view></router-view>
 </template>
 
 <script setup>
-import TheCounter from '@/components/TheCounter.vue'
-import BaseContainer from '@/components/BaseContainer.vue'
-import ChangeCounter from '@/components/ChangeCounter.vue'
-import { useCounterStore } from '@/stores/counter/index.js'
-import FavoriteValue from '@/components/FavoriteValue.vue'
-import UserAuth from "@/components/UserAuth.vue";
-import {useUserAuthStore} from "@/stores/userAuth/index.js";
-
-const createStore = useCounterStore()
-const userAuthStore = useUserAuthStore();
-const addOne = () => createStore.increase(10)
+import TheHeader from "@/components/nav/TheHeader.vue"
+import {useGlobalStore} from "@/stores/index.js";
+const globalStore = useGlobalStore();
+globalStore.incrementIndex();
 </script>
 
 <style>
