@@ -1,3 +1,5 @@
+import { useGlobalStore } from '@/stores/index.js'
+
 export default {
     getCoaches(state) {
         return state.coaches;
@@ -25,4 +27,11 @@ export default {
             });
         }
     },
+    isCoach(state) {
+        console.log('isCoach...')
+        const globalStore = useGlobalStore()
+        const coaches = state.getCoaches
+        const userId = globalStore.userId
+        return coaches.some(coach => coach.id === userId)
+    }
 }

@@ -1,8 +1,11 @@
+import { useGlobalStore } from '@/stores/index.js'
+
 export default {
     registerCoach(data) {
         console.log('registerCoach...');
+        const globalStore = useGlobalStore()
         const coachData = {
-            id: 'c3',
+            id: globalStore.userId,
             firstName: data.first,
             lastName: data.last,
             description: data.desc,

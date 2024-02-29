@@ -10,8 +10,13 @@
 <script setup>
 import CoachForm from "@/components/coaches/CoachForm.vue";
 import {useCoachesStore} from "@/stores/coaches/index.js";
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const coachesStore = useCoachesStore();
-const saveData = (data) => coachesStore.registerCoach(data);
+const saveData = (data) => {
+  coachesStore.registerCoach(data)
+  router.replace('/coaches')
+}
 </script>
 
 <style scoped>

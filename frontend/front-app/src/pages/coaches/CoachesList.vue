@@ -6,7 +6,7 @@
     <BaseCard>
       <div class="controls">
         <BaseButton mode="outline">Refresh</BaseButton>
-        <BaseButton link to="/register">Register as Coach</BaseButton>
+        <BaseButton v-if="!coachesStore.isCoach" link to="/register">Register as Coach</BaseButton>
       </div>
       <ul v-if="coachesStore.hasCoaches">
         <CoachItem v-for="coach in coachesStore.getCoachesByAreas(activeFilters)" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
