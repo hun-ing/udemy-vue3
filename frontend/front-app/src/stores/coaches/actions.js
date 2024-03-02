@@ -1,18 +1,42 @@
-import { useGlobalStore } from '@/stores/index.js'
+import {useFetch} from '@vueuse/core';
 
 export default {
-    registerCoach(data) {
-        console.log('registerCoach...');
-        const globalStore = useGlobalStore()
-        const coachData = {
-            id: globalStore.userId,
-            firstName: data.first,
-            lastName: data.last,
-            description: data.desc,
-            hourlyRate: data.rate,
-            areas: data.areas
-        }
+  async registerCoach(coachData) {
+    console.log('registerCoach...');
+    const newCoachData = {
+      firstName: coachData.first,
+      lastName: coachData.last,
+      description: coachData.desc,
+      hourlyRate: coachData.rate,
+      areas: coachData.areas,
+    };
 
-        this.coaches.push(coachData);
+    const {data, error} = await useFetch(
+        `http://localhost:8080/api/coach`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newCoachData),
+        });
+
+    if (error.value) {
+      console.error(error.value);
+      return;
     }
-}
+
+    console.log('data = ', data.value);
+    console.log('newCoachData = ', newCoachData);
+
+    this.coaches.push(JSON.parse(data.value));
+  },
+  async loadCoaches() {
+    const {data, error} = await useFetch(`http://localhost:8080/api/coaches`);
+
+    if (error.value) {
+      throw new Error('Failed to fetch!!');
+    }
+
+    console.log('data = ', JSON.parse(data.value));
+  },
+};

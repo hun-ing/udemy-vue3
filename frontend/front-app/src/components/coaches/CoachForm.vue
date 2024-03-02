@@ -110,7 +110,9 @@ const submitForm = () => {
     last: lastName.value.val,
     desc: description.value.val,
     rate: rate.value.val,
-    areas: areas.value.val,
+    areas: areas.value.val.map(area => {
+      return {area}
+    }),
   }
 
   emits('save-data', formData);
