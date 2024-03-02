@@ -21,12 +21,8 @@ export default {
         });
 
     if (error.value) {
-      console.error(error.value);
-      return;
+      throw new Error('Failed to fetch!!');
     }
-
-    console.log('data = ', data.value);
-    console.log('newCoachData = ', newCoachData);
 
     this.coaches.push(JSON.parse(data.value));
   },
@@ -38,5 +34,6 @@ export default {
     }
 
     console.log('data = ', JSON.parse(data.value));
+    this.coaches = JSON.parse(data.value);
   },
 };

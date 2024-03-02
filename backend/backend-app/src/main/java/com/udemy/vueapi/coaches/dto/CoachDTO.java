@@ -18,7 +18,7 @@ public class CoachDTO {
   private String firstName;
   private String lastName;
   private String description;
-  private String hourlyRate;
+  private int hourlyRate;
   private List<AreaDTO> areas;
 
   public static CoachDTO toCreateDTO(CoachEntity entity) {

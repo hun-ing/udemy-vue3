@@ -35,9 +35,9 @@ const submitForm = () => {
   }
 
   requestsStore.contactCoach({
+    coachId: route.params.id,
     email: email.value,
     message: message.value,
-    coachId: route.params.id,
   });
 
   router.replace('/coaches');

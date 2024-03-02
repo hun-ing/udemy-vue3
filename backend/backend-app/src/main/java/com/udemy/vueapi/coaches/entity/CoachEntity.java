@@ -31,7 +31,7 @@ public class CoachEntity {
   private String firstName;
   private String lastName;
   private String description;
-  private String hourlyRate;
+  private int hourlyRate;
 
   @JsonIgnore
   @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)

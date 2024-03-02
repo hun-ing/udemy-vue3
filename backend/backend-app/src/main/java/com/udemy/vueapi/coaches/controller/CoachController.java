@@ -44,12 +44,12 @@ public class CoachController {
 
   @GetMapping("/api/coaches")
   public ResponseEntity<List<CoachDTO>> getCoaches() {
-    List<CoachEntity> surveyEntities = coachRepository.findAll();
+    List<CoachEntity> coachEntities = coachRepository.findAll();
 
-    List<CoachDTO> coachDTOList = surveyEntities.stream()
+    List<CoachDTO> coaches = coachEntities.stream()
       .map(CoachDTO::toCreateDTO)
       .toList();
 
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(coachDTOList);
+    return ResponseEntity.status(HttpStatus.OK).body(coaches);
   }
 }

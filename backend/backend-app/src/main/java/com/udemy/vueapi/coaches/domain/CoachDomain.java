@@ -15,7 +15,7 @@ public class CoachDomain {
   private final String firstName;
   private final String lastName;
   private final String description;
-  private final String hourlyRate;
+  private final int hourlyRate;
 
   private CoachDomain(CoachDTO dto) {
     this.id = dto.getId();
