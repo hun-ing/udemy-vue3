@@ -5,7 +5,6 @@ import actions from "@/stores/actions.js";
 export const useGlobalStore = defineStore('global', {
     state: () => {
         return {
-            userId: '4'
         }
     },
     actions,

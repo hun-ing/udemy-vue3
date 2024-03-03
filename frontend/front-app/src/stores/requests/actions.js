@@ -20,7 +20,7 @@ export default {
   async loadRequests() {
     console.log('loadRequests...');
     const globalStore = useGlobalStore();
-    const coachId = globalStore.userId;
+    const coachId = globalStore.getUserId
     const {data, error} = await useFetch(`http://localhost:8080/api/requests/${coachId}`);
 
     if (error.value) {
