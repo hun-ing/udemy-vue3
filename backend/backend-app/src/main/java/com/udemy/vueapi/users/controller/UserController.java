@@ -4,6 +4,7 @@ import com.udemy.vueapi.users.domain.UserDomain;
 import com.udemy.vueapi.users.dto.UserDTO;
 import com.udemy.vueapi.users.entity.UserEntity;
 import com.udemy.vueapi.users.repository.UserRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
@@ -23,5 +24,17 @@ public class UserController {
     UserEntity userEntity = userRepository.save(UserDomain.of(requestBody).toCreateEntity());
 
     return ResponseEntity.status(HttpStatus.OK).body(UserDTO.toCreateDTO(userEntity));
+  }
+
+  @PostMapping("/api/auth")
+  public ResponseEntity<Object> login(@RequestBody UserDTO requestBody) {
+
+    try {
+      UserEntity userEntity = userRepository.findByEmail(requestBody.getEmail())
+        .orElseThrow(() -> new IllegalArgumentException("user doesn't exist"));
+      return ResponseEntity.status(HttpStatus.OK).body(UserDTO.toCreateDTO(userEntity));
+    } catch (Exception ex) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
   }
 }
