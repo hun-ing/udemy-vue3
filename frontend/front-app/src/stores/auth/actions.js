@@ -23,7 +23,7 @@ export default {
         console.log('router1 = ', this.$router);
         console.log('router2 = ', this.router);
         console.log('router3 = ', router);
-        router.replace('/coaches');
+        // router.replace('/coaches');
     },
     async auth(userData, mode) {
         let url = 'http://localhost:8080/api/auth';
