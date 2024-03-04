@@ -10,7 +10,8 @@
       <BaseCard>
         <div class="controls">
           <BaseButton mode="outline" @click="loadCoaches">Refresh</BaseButton>
-          <BaseButton v-if="!isCoach && !isLoading" link to="/register">Register as Coach</BaseButton>
+          <BaseButton link to="/auth?redirect=register" v-if="!authStore.isAuthenticated">Login</BaseButton>
+          <BaseButton v-if="authStore.isAuthenticated && !coachesStore.isCoach && !isLoading" link to="/register">Register as Coach</BaseButton>
         </div>
         <div v-if="isLoading">
           <BaseSpinner></BaseSpinner>
@@ -32,11 +33,12 @@ import {useCoachesStore} from '@/stores/coaches/index.js';
 import CoachItem from '@/components/coaches/CoachItem.vue';
 import CoachFilter from '@/components/coaches/CoachFilter.vue';
 import {onMounted, ref} from 'vue';
+import {useAuthStore} from "@/stores/auth/index.js";
 
 const coachesStore = useCoachesStore();
+const authStore = useAuthStore();
 
 const isLoading = ref(false);
-const isCoach = ref(false);
 const activeFilters = ref({
   frontend: true,
   backend: true,
@@ -49,13 +51,11 @@ const setFilters = (updatedFilters) => {
 const hasCoaches = () => !isLoading.value && coachesStore.hasCoaches();
 const loadCoaches = async () => {
   isLoading.value = true;
-  isCoach.value = false;
   try {
     await coachesStore.loadCoaches();
   } catch (e) {
     error.value = e.message || 'Something went wrong!';
   }
-  isCoach.value = coachesStore.isCoach;
   isLoading.value = false;
 };
 const dialogHandleError = () => error.value = null;

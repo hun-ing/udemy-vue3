@@ -7,7 +7,7 @@ export const useAuthStore = defineStore('auth', {
         return {
             userId: null,
             token: null,
-            tokenExpiration: null,
+            didAutoLogout: false,
         }
     },
     actions,

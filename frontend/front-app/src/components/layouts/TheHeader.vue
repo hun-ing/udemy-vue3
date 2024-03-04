@@ -8,8 +8,14 @@
         <li>
           <router-link to="/coaches">All Coaches</router-link>
         </li>
-        <li>
+        <li v-if="authStore.isAuthenticated">
           <router-link to="/requests">Requests</router-link>
+        </li>
+        <li v-else>
+          <router-link to="/auth">Login</router-link>
+        </li>
+        <li v-if="authStore.isAuthenticated">
+          <BaseButton @click="logout">Logout</BaseButton>
         </li>
       </ul>
     </nav>
@@ -18,7 +24,15 @@
 </template>
 
 <script setup>
+import {useAuthStore} from "@/stores/auth/index.js";
+import {useRouter} from "vue-router";
 
+const authStore = useAuthStore();
+const router = useRouter();
+
+const logout = () => {
+  authStore.logout();
+}
 </script>
 
 <style scoped>

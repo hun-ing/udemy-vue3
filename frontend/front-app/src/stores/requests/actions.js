@@ -1,5 +1,6 @@
 import {useFetch} from '@vueuse/core';
 import {useGlobalStore} from '@/stores/index.js';
+import {useAuthStore} from "@/stores/auth/index.js";
 
 export default {
   async contactCoach(requestData) {
@@ -19,8 +20,8 @@ export default {
 
   async loadRequests() {
     console.log('loadRequests...');
-    const globalStore = useGlobalStore();
-    const coachId = globalStore.getUserId
+    const authStore = useAuthStore();
+    const coachId = authStore.getUserId
     const {data, error} = await useFetch(`http://localhost:8080/api/requests/${coachId}`);
 
     if (error.value) {

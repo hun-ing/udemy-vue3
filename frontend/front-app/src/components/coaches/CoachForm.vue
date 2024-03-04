@@ -23,11 +23,13 @@
     <div class="form-control" :class="{invalid: !areas.isValid}">
       <h3>Areas of Expertise</h3>
       <div class="filter-option">
-        <input type="checkbox" name="area" id="frontend" value="frontend" v-model="areas.val" @blur="clearValidity(areas)"/>
+        <input type="checkbox" name="area" id="frontend" value="frontend" v-model="areas.val"
+               @blur="clearValidity(areas)"/>
         <label for="frontend">Frontend Development</label>
       </div>
       <div class="filter-option">
-        <input type="checkbox" name="area" id="backend" value="backend" v-model="areas.val" @blur="clearValidity(areas)"/>
+        <input type="checkbox" name="area" id="backend" value="backend" v-model="areas.val"
+               @blur="clearValidity(areas)"/>
         <label for="backend">Backend Development</label>
       </div>
       <div class="filter-option">

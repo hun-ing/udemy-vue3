@@ -9,6 +9,25 @@
 
 <script setup>
 import TheHeader from "@/components/layouts/TheHeader.vue";
+import {computed, onMounted, watch} from "vue";
+import {useAuthStore} from "@/stores/auth/index.js";
+import {useRouter} from "vue-router";
+
+const authStore = useAuthStore();
+const router = useRouter();
+onMounted(() => {
+  console.log('App onMounted...')
+  authStore.tryLogin()
+})
+
+const didAutoLogout = computed(() => authStore.getDidAutoLogout);
+
+watch(didAutoLogout, (curValue, oldValue) => {
+  console.log('App Watches...');
+  if (curValue && curValue !== oldValue) {
+    router.replace('/coaches');
+  }
+})
 </script>
 
 <style>

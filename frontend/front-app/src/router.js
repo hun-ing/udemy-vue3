@@ -6,6 +6,7 @@ import CoachesRegistration from "@/pages/coaches/CoachesRegistration.vue";
 import RequestsReceived from "@/pages/requests/RequestsReceived.vue";
 import NotFound from "@/pages/NotFound.vue";
 import UserAuth from '@/pages/auth/UserAuth.vue';
+import {useAuthStore} from "@/stores/auth/index.js";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,11 +19,24 @@ const router = createRouter({
             props: true,
             children: [{path: 'contact', component: ContactCoach,}]
         },
-        {path: '/register', component: CoachesRegistration,},
-        {path: '/requests', component: RequestsReceived,},
-        {path: '/auth', component: UserAuth,},
+        {path: '/register', component: CoachesRegistration, meta: {requiresAuth: true}},
+        {path: '/requests', component: RequestsReceived, meta: {requiresAuth: true}},
+        {path: '/auth', component: UserAuth, meta: {requiresUnauth: true}},
         {path: '/:notFound(.*)', component: NotFound,},
     ],
 });
 
+router.beforeEach((to, from, next) => {
+    const authStore = useAuthStore();
+    console.log('authStore = ', authStore.isAuthenticated);
+    console.log('to.meta = ', to.meta);
+    console.log('from.meta = ', from.meta);
+    if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+        next('/auth')
+    } else if (to.meta.requiresUnauth && authStore.isAuthenticated) {
+        next('/coaches')
+    } else {
+        next()
+    }
+})
 export default router;
