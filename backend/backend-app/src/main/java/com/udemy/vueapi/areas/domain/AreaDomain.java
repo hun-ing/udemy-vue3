@@ -1,7 +1,7 @@
 package com.udemy.vueapi.areas.domain;
 
 import com.udemy.vueapi.areas.dto.AreaDTO;
-import com.udemy.vueapi.areas.entity.AreaEntity;
+import com.udemy.vueapi.entities.AreaEntity;
 import lombok.Getter;
 
 

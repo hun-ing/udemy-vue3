@@ -1,6 +1,6 @@
-package com.udemy.vueapi.areas.repository;
+package com.udemy.vueapi.repositories;
 
-import com.udemy.vueapi.areas.entity.AreaEntity;
+import com.udemy.vueapi.entities.AreaEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

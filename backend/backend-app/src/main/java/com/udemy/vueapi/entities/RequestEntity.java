@@ -1,4 +1,4 @@
-package com.udemy.vueapi.areas.entity;
+package com.udemy.vueapi.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,15 +14,17 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @Entity
-@Table(name = "areas")
+@Table(name = "requests")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class AreaEntity {
+public class RequestEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String area;
+  private Long coachId;
+  private String email;
+  private String message;
 }
 
 

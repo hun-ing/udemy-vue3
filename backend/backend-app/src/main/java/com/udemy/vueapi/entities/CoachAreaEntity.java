@@ -1,16 +1,15 @@
-package com.udemy.vueapi.coaches.entity;
+package com.udemy.vueapi.entities;
+
+import static jakarta.persistence.FetchType.LAZY;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.udemy.vueapi.coachesareas.entity.CoachAreaEntity;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,28 +19,35 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @Entity
-@Table(name = "coaches")
+@Table(name = "coaches_areas")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class CoachEntity {
+public class CoachAreaEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String firstName;
-  private String lastName;
-  private String description;
-  private int hourlyRate;
+
+  @ManyToOne(fetch = LAZY)
+  @JoinColumn(name = "area_id")
+  private AreaEntity area;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)
-  private List<CoachAreaEntity> coachesAreas = new ArrayList<>();
+  @ManyToOne(fetch = LAZY)
+  @JoinColumn(name = "coach_id")
+  private CoachEntity coach;
 
   //==연관관계 메서드==//
 
-  public void addCoachArea(CoachAreaEntity coachArea) {
-    this.coachesAreas.add(coachArea);
-    coachArea.setCoach(this);
+  public void setCoach(CoachEntity coach) {
+    this.coach = coach;
+  }
+
+  //==생성 메서드==//
+  public static CoachAreaEntity createCoachArea(AreaEntity area) {
+    return CoachAreaEntity.builder()
+        .area(area)
+        .build();
   }
 }
 

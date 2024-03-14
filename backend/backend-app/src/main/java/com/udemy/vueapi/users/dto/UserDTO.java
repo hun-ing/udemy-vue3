@@ -1,6 +1,6 @@
 package com.udemy.vueapi.users.dto;
 
-import com.udemy.vueapi.users.entity.UserEntity;
+import com.udemy.vueapi.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

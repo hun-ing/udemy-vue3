@@ -1,12 +1,12 @@
 package com.udemy.vueapi.coaches.controller;
 
-import com.udemy.vueapi.areas.entity.AreaEntity;
-import com.udemy.vueapi.areas.repository.AreaRepository;
+import com.udemy.vueapi.entities.AreaEntity;
+import com.udemy.vueapi.repositories.AreaRepository;
 import com.udemy.vueapi.coaches.domain.CoachDomain;
 import com.udemy.vueapi.coaches.dto.CoachDTO;
-import com.udemy.vueapi.coaches.entity.CoachEntity;
-import com.udemy.vueapi.coaches.repository.CoachRepository;
-import com.udemy.vueapi.coachesareas.entity.CoachAreaEntity;
+import com.udemy.vueapi.entities.CoachEntity;
+import com.udemy.vueapi.repositories.CoachRepository;
+import com.udemy.vueapi.entities.CoachAreaEntity;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

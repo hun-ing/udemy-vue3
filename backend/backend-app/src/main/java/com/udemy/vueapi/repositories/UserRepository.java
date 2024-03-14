@@ -1,6 +1,6 @@
-package com.udemy.vueapi.users.repository;
+package com.udemy.vueapi.repositories;
 
-import com.udemy.vueapi.users.entity.UserEntity;
+import com.udemy.vueapi.entities.UserEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

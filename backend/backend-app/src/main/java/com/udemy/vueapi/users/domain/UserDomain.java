@@ -1,7 +1,7 @@
 package com.udemy.vueapi.users.domain;
 
 import com.udemy.vueapi.users.dto.UserDTO;
-import com.udemy.vueapi.users.entity.UserEntity;
+import com.udemy.vueapi.entities.UserEntity;
 import lombok.Getter;
 
 

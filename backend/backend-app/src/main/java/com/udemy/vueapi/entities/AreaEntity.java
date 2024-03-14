@@ -1,4 +1,4 @@
-package com.udemy.vueapi.users.entity;
+package com.udemy.vueapi.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,16 +14,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @Entity
-@Table(name = "users")
+@Table(name = "areas")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserEntity {
+public class AreaEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String email;
-  private String password;
+  private String area;
 }
 
 

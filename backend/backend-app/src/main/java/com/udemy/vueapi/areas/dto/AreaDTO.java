@@ -1,6 +1,6 @@
 package com.udemy.vueapi.areas.dto;
 
-import com.udemy.vueapi.areas.entity.AreaEntity;
+import com.udemy.vueapi.entities.AreaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

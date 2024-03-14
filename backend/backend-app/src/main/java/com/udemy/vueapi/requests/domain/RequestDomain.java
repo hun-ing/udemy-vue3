@@ -1,7 +1,7 @@
 package com.udemy.vueapi.requests.domain;
 
 import com.udemy.vueapi.requests.dto.RequestDTO;
-import com.udemy.vueapi.requests.entity.RequestEntity;
+import com.udemy.vueapi.entities.RequestEntity;
 import lombok.Getter;
 
 

@@ -1,8 +1,7 @@
-package com.udemy.vueapi.requests.repository;
+package com.udemy.vueapi.repositories;
 
-import com.udemy.vueapi.requests.entity.RequestEntity;
+import com.udemy.vueapi.entities.RequestEntity;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RequestRepository extends JpaRepository<RequestEntity, Long> {

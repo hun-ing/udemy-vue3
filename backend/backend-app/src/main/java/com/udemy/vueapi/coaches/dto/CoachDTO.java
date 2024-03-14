@@ -1,7 +1,7 @@
 package com.udemy.vueapi.coaches.dto;
 
 import com.udemy.vueapi.areas.dto.AreaDTO;
-import com.udemy.vueapi.coaches.entity.CoachEntity;
+import com.udemy.vueapi.entities.CoachEntity;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

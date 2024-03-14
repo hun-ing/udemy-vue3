@@ -2,8 +2,8 @@ package com.udemy.vueapi.requests.controller;
 
 import com.udemy.vueapi.requests.domain.RequestDomain;
 import com.udemy.vueapi.requests.dto.RequestDTO;
-import com.udemy.vueapi.requests.entity.RequestEntity;
-import com.udemy.vueapi.requests.repository.RequestRepository;
+import com.udemy.vueapi.entities.RequestEntity;
+import com.udemy.vueapi.repositories.RequestRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

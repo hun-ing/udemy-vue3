@@ -1,6 +1,6 @@
 package com.udemy.vueapi.requests.dto;
 
-import com.udemy.vueapi.requests.entity.RequestEntity;
+import com.udemy.vueapi.entities.RequestEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

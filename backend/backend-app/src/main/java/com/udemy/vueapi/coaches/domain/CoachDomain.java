@@ -1,10 +1,9 @@
 package com.udemy.vueapi.coaches.domain;
 
 import com.udemy.vueapi.coaches.dto.CoachDTO;
-import com.udemy.vueapi.coaches.entity.CoachEntity;
-import com.udemy.vueapi.coachesareas.entity.CoachAreaEntity;
+import com.udemy.vueapi.entities.CoachEntity;
+import com.udemy.vueapi.entities.CoachAreaEntity;
 import java.util.ArrayList;
-import java.util.List;
 import lombok.Getter;
 
 
