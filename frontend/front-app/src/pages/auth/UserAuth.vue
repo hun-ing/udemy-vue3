@@ -43,7 +43,7 @@ const error = ref(null);
 
 const submitForm = async () => {
   formIsValid.value = true;
-  if (email.value === '' || !email.value.includes('@') || password.value.length < 6) {
+  if (email.value === '' || !email.value.includes('@') || password.value.length < 4) {
     formIsValid.value = false;
     return;
   }

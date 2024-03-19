@@ -26,7 +26,7 @@ export default {
         // router.replace('/coaches');
     },
     async auth(userData, mode) {
-        let url = 'http://localhost:8080/api/auth';
+        let url = 'http://localhost:8080/user';
 
         if (mode === 'signup') {
             url = 'http://localhost:8080/api/signup';
