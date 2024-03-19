@@ -1,34 +1,16 @@
 <template>
   <v-app>
-    <TheNav />
-    <TheHeader />
-
-    <v-main>
-      <v-container
-        fluid
-      >
-        <router-view v-slot="slotProps">
-          <transition
-            name="route"
-            mode="out-in"
-          >
-            <component :is="slotProps.Component" />
-          </transition>
-        </router-view>
-      </v-container>
-    </v-main>
+    <component :is="layout">
+      <router-view />
+    </component>
   </v-app>
 </template>
 
 <script setup>
-import TheHeader from '@/components/layouts/TheHeader.vue'
-import TheNav from "@/components/layouts/TheNav.vue";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useAuthStore } from '@/stores/auth/index.js'
 import { useRouter } from 'vue-router'
-
-const drawer = ref(true)
-const rail = ref(false)
+import { useRoute } from 'vue-router';
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -45,4 +27,12 @@ watch(didAutoLogout, (curValue, oldValue) => {
     router.replace('/coaches')
   }
 })
+
+const route = useRoute();
+const layout = computed(() => {
+  console.log("layout computed...");
+  console.log(route?.meta);
+  const layout = route?.meta?.layout;
+  return layout ? layout : 'div';
+});
 </script>

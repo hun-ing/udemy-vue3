@@ -2,6 +2,8 @@ import {createRouter, createWebHistory} from "vue-router";
 import {useAuthStore} from "@/stores/auth/index.js";
 import CoachesList from "@/pages/coaches/CoachesList.vue";
 import NotFound from "@/pages/NotFound.vue";
+import TheDefaultLayout from '@/components/layouts/DefaultLayout.vue';
+import TheDashboardLayout from '@/components/layouts/BlankLayout.vue';
 // import CoachDetail from "@/pages/coaches/CoachDetail.vue";
 // import ContactCoach from "@/pages/requests/ContactCoach.vue";
 // import CoachesRegistration from "@/pages/coaches/CoachesRegistration.vue";
@@ -18,17 +20,18 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', redirect: '/coaches',},
-        {path: '/coaches', component: CoachesList,},
+        {path: '/coaches', component: CoachesList, meta: {layout: TheDefaultLayout,}},
         {
             path: '/coaches/:id',
             component: CoachDetail,
             props: true,
-            children: [{path: 'contact', component: ContactCoach,}]
+            meta: {layout: 'TheDefaultLayout',},
+            children: [{path: 'contact', component: ContactCoach, meta: {layout: TheDefaultLayout,},}]
         },
-        {path: '/register', component: CoachesRegistration, meta: {requiresAuth: true}},
-        {path: '/requests', component: RequestsReceived, meta: {requiresAuth: true}},
-        {path: '/auth', component: UserAuth, meta: {requiresUnauth: true}},
-        {path: '/:notFound(.*)', component: NotFound,},
+        {path: '/register', component: CoachesRegistration, meta: {layout: TheDefaultLayout,requiresAuth: true}},
+        {path: '/requests', component: RequestsReceived, meta: {layout: TheDefaultLayout,requiresAuth: true}},
+        {path: '/auth', component: UserAuth, meta: {layout: TheDashboardLayout, requiresUnauth: true}},
+        {path: '/:notFound(.*)', component: NotFound, meta: {layout: TheDashboardLayout,}},
     ],
 });
 
