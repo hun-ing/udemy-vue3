@@ -7,9 +7,14 @@
   >
     <v-list-item>
       <v-img
-        cover
+        v-if="!globalStore.getRail"
         height="72"
         src="@/assets/logo_default_72px@2x.webp"
+      />
+      <v-img
+        v-if="globalStore.getRail"
+        height="72"
+        src="@/assets/logo.svg"
       />
     </v-list-item>
 
