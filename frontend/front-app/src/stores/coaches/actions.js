@@ -11,6 +11,8 @@ export default {
       areas: coachData.areas,
     };
 
+    return;
+
     const {data, error} = await useFetch(
         `http://localhost:8080/api/coach`, {
           method: 'PUT',
@@ -27,6 +29,7 @@ export default {
     this.coaches.push(JSON.parse(data.value));
   },
   async loadCoaches() {
+    return;
     const {data, error} = await useFetch(`http://localhost:8080/api/coaches`);
 
     if (error.value) {
