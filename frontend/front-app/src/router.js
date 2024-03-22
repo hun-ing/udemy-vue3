@@ -4,6 +4,7 @@ import CoachesList from "@/pages/coaches/CoachesList.vue";
 import NotFound from "@/pages/NotFound.vue";
 import TheDefaultLayout from '@/components/layouts/DefaultLayout.vue';
 import TheDashboardLayout from '@/components/layouts/BlankLayout.vue';
+import DataTable from "@/pages/DataTable/DataTable.vue";
 // import CoachDetail from "@/pages/coaches/CoachDetail.vue";
 // import ContactCoach from "@/pages/requests/ContactCoach.vue";
 // import CoachesRegistration from "@/pages/coaches/CoachesRegistration.vue";
@@ -20,12 +21,13 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', redirect: '/coaches',},
-        {path: '/coaches', component: CoachesList, meta: {layout: TheDefaultLayout,}},
+        // {path: '/coaches', component: CoachesList, meta: {layout: TheDefaultLayout,}},
+        {path: '/coaches', component: DataTable, meta: {layout: TheDefaultLayout,}},
         {
             path: '/coaches/:id',
             component: CoachDetail,
             props: true,
-            meta: {layout: 'TheDefaultLayout',},
+            meta: {layout: TheDefaultLayout,},
             children: [{path: 'contact', component: ContactCoach, meta: {layout: TheDefaultLayout,},}]
         },
         {path: '/register', component: CoachesRegistration, meta: {layout: TheDefaultLayout,requiresAuth: true}},
